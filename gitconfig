@@ -1,0 +1,23 @@
+[user]
+	name = Karsten Knese
+	email = karsten.knese@googlemail.com
+
+[alias]
+    gl  = log -10 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+    gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+
+    co = checkout
+    ci = commit
+    br = branch
+
+    stat = status
+    st = status
+
+    unstage = reset HEAD
+    uns = reset HEAD
+
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
