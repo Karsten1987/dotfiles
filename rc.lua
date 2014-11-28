@@ -67,6 +67,12 @@ layouts =
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
+
+names =
+{
+  "main", "www", 2, 3, 4, 5, 6, 7, "private"
+}
+
 -- }}}
 
 -- {{{ Tags
@@ -74,7 +80,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+    tags[s] = awful.tag(names, s, layouts[2])
 end
 -- }}}
 
@@ -266,6 +272,15 @@ globalkeys = awful.util.table.join(
      awful.key({ }, "XF86TouchpadToggle",
                 function ()
                     awful.util.spawn_with_shell("synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')")
+                end),
+
+    -- Rename tag
+    awful.key({ modkey, "Shift",  }, "F2",    function ()
+                        awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, },
+                        mypromptbox[mouse.screen].widget,
+                        function (s)
+                            awful.tag.selected().name = s
+                        end)
                 end)
 )
 
