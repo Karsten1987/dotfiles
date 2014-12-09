@@ -284,9 +284,13 @@ globalkeys = awful.util.table.join(
                 end),
 
     -- Screenshots
-    awful.key({ modkey, "Shift", }, "Print",  
+    awful.key({ modkey, }, "Print",
                 function ()
                         awful.util.spawn_with_shell("scrot -u")
+              end),
+    awful.key({ modkey, "Shift", }, "Print",
+                function ()
+                        awful.util.spawn_with_shell("sleep 0.5 && scrot -s")
               end)
 )
 
