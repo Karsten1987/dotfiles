@@ -70,7 +70,7 @@ layouts =
 
 names =
 {
-  "main", "www", 2, 3, 4, 5, 6, 7, "private"
+  "main", "www", 3, 4, 5, 6, 7, 8, "private"
 }
 
 -- }}}
@@ -281,7 +281,13 @@ globalkeys = awful.util.table.join(
                         function (s)
                             awful.tag.selected().name = s
                         end)
-                end)
+                end),
+
+    -- Screenshots
+    awful.key({ modkey, "Shift", }, "Print",  
+                function ()
+                        awful.util.spawn_with_shell("scrot -u")
+              end)
 )
 
 clientkeys = awful.util.table.join(
