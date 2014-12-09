@@ -270,7 +270,26 @@ globalkeys = awful.util.table.join(
      awful.key({ }, "XF86TouchpadToggle",
                 function ()
                     awful.util.spawn_with_shell("synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')")
-                end)
+                end),
+
+    -- Rename tag
+    awful.key({ modkey, "Shift",  }, "F2",    function ()
+                        awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, },
+                        mypromptbox[mouse.screen].widget,
+                        function (s)
+                            awful.tag.selected().name = s
+                        end)
+                end),
+
+    -- Screenshots
+    awful.key({ modkey, }, "Print",
+                function ()
+                        awful.util.spawn_with_shell("scrot -u")
+              end),
+    awful.key({ modkey, "Shift", }, "Print",
+                function ()
+                        awful.util.spawn_with_shell("sleep 0.5 && scrot -s")
+              end)
 )
 
 clientkeys = awful.util.table.join(

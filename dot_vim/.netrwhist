@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/etc/NetworkManager'
+let g:netrw_dirhist_2='/home/karsten/workspace/aldebaran/aldebaran_ws'
+let g:netrw_dirhist_3='/home/karsten/workspace/aldebaran/aldebaran_ws/src/dummy_robot'
+let g:netrw_dirhist_4='/home/karsten/workspace/aldebaran/aldebaran_ws/src/dummy_robot/dummy_robot_control'
+let g:netrw_dirhist_5='/home/karsten/workspace/aldebaran/aldebaran_ws/src/dummy_robot'
+let g:netrw_dirhist_6='/home/karsten/Dropbox/scripts/cpp'
