@@ -67,12 +67,6 @@ layouts =
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
-
-names =
-{
-  "main", "www", 3, 4, 5, 6, 7, 8, "private"
-}
-
 -- }}}
 
 -- {{{ Tags
@@ -80,7 +74,7 @@ names =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag(names, s, layouts[2])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
 end
 -- }}}
 
@@ -263,35 +257,22 @@ globalkeys = awful.util.table.join(
     --- special keys for volume
      awful.key({ }, "XF86AudioRaiseVolume",
                 function ()
-                    awful.util.spawn("amixer -q sset Master 2dB+")
+                    awful.util.spawn("amixer -q sset Master 2dB+ unmute")
                 end),
      awful.key({ }, "XF86AudioLowerVolume",
                  function ()
-                    awful.util.spawn("amixer -q sset Master 2dB-")
+                    awful.util.spawn("amixer -q sset Master 2dB- unmute")
+                end),
+     awful.key({ }, "XF86AudioMute",
+                 function ()
+                    awful.util.spawn("amixer -q set Master toggle;
+                                      amixer -q set Headphone toggle;
+                                      amixer -q set Speaker toggle")
                 end),
      awful.key({ }, "XF86TouchpadToggle",
                 function ()
                     awful.util.spawn_with_shell("synclient TouchpadOff=$(synclient -l | grep -c 'TouchpadOff.*=.*0')")
-                end),
-
-    -- Rename tag
-    awful.key({ modkey, "Shift",  }, "F2",    function ()
-                        awful.prompt.run({ prompt = "Rename tab: ", text = awful.tag.selected().name, },
-                        mypromptbox[mouse.screen].widget,
-                        function (s)
-                            awful.tag.selected().name = s
-                        end)
-                end),
-
-    -- Screenshots
-    awful.key({ modkey, }, "Print",
-                function ()
-                        awful.util.spawn_with_shell("scrot -u")
-              end),
-    awful.key({ modkey, "Shift", }, "Print",
-                function ()
-                        awful.util.spawn_with_shell("sleep 0.5 && scrot -s")
-              end)
+                end)
 )
 
 clientkeys = awful.util.table.join(
