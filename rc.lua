@@ -265,9 +265,7 @@ globalkeys = awful.util.table.join(
                 end),
      awful.key({ }, "XF86AudioMute",
                  function ()
-                    awful.util.spawn("amixer -q set Master toggle;
-                                      amixer -q set Headphone toggle;
-                                      amixer -q set Speaker toggle")
+                    awful.util.spawn("pactl set-sink-mute 0 toggle")
                 end),
      awful.key({ }, "XF86TouchpadToggle",
                 function ()
