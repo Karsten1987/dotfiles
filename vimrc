@@ -3,6 +3,7 @@ let s:cpo_save=&cpo
 set cpo&vim
 let &cpo=s:cpo_save
 unlet s:cpo_save
+
 set backspace=indent,eol,start
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -25,7 +26,10 @@ set list
 colorscheme wombat256mod
 set ttyfast
 set noautoindent
-
+" toggle formatting options for raw-paste
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 " vundle config "
 filetype off                  " required
 
@@ -45,7 +49,7 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.branch = '⎇'
 
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'majutsushi/tagbar'
