@@ -67,6 +67,12 @@ layouts =
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
+
+names =
+{
+  "1==", "2==", "3==", "4==", "5==", "6==", "7==", "8==", "private"
+}
+
 -- }}}
 
 -- {{{ Tags
@@ -74,7 +80,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[2])
+    tags[s] = awful.tag(names, s, layouts[2])
 end
 -- }}}
 
@@ -257,15 +263,11 @@ globalkeys = awful.util.table.join(
     --- special keys for volume
      awful.key({ }, "XF86AudioRaiseVolume",
                 function ()
-                    awful.util.spawn("amixer -q sset Master 2dB+ unmute")
+                    awful.util.spawn("amixer -q sset Master 2dB+")
                 end),
      awful.key({ }, "XF86AudioLowerVolume",
                  function ()
-                    awful.util.spawn("amixer -q sset Master 2dB- unmute")
-                end),
-     awful.key({ }, "XF86AudioMute",
-                 function ()
-                    awful.util.spawn("pactl set-sink-mute 0 toggle")
+                    awful.util.spawn("amixer -q sset Master 2dB-")
                 end),
      awful.key({ }, "XF86TouchpadToggle",
                 function ()
@@ -280,6 +282,12 @@ globalkeys = awful.util.table.join(
                             awful.tag.selected().name = s
                         end)
                 end),
+
+    -- Lock screeen
+    awful.key({ modkey, "Control"}, "l",
+              function()
+                 awful.util.spawn("gnome-screensaver-command --lock")
+              end),
 
     -- Screenshots
     awful.key({ modkey, }, "Print",
