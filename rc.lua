@@ -104,8 +104,20 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- }}}
 
 -- {{{ Wibox
--- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
+
+-- the widget
+mybattmon = widget({ type = "textbox", name = "mybattmon", align = "right" })
+mybattmon.text = "Battery status"
+batterywidgettimer = timer({ timeout = 60 }) -- in seconds
+batterywidgettimer:add_signal("timeout", function()
+    fh = assert(io.popen("acpi | cut -d, -f 2 -", "r"))
+    mybattmon.text = " |" .. fh:read("*l") .. " | "
+    fh:close()
+
+end)
+batterywidgettimer:start()
+
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -186,6 +198,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
+        mybattmon,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -422,3 +435,5 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
