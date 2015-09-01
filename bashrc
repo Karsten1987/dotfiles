@@ -98,27 +98,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# ECLIPSE SHORTCUTS
-export eclipse_cpp=~/eclipse_dist/eclipse_cpp/eclipse/eclipse
-export eclipse_classic=~/eclipse_dist/eclipse_classic/eclipse/eclipse
-
-# ROS DISTRIBUTION
-source /opt/ros/indigo/setup.bash
-source ~/workspace/aldebaran/aldebaran_ws/devel/setup.bash
-#source /home/karsten/workspace/ros/setup.bash
-#export ROS_MASTER_URI=http://localhost:11311
-#export ROS_HOSTNAME=localhost
-
-# LEJOS PATH
-NXJ_HOME=/opt/leJOS_NXJ_0.9.1beta-3
-
-# GAZEBO SETUP
-#source /home/karsten/workspace/ros/catkin_ws/devel/setup.bash
-
-# NAOqi setup
-PYTHONPATH=$PYTHONPATH:/home/karsten/workspace/aldebaran/pynaoqi-python2.7-2.0.3.33-linux32
-export AL_DIR=/home/karsten/workspace/aldebaran/naoqi-sdk-2.1.0.19-linux32
-
 # set a 256 xterm
 export TERM='xterm-256color'
 
