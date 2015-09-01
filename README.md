@@ -1,6 +1,8 @@
 Dependencies
 ===========
-for vim:
+
+vim:-
+------
 setup vundle
 
 ```
@@ -10,4 +12,10 @@ setup vundle
 install the vim plugins via 
 ```
   :PluginInstall
+```
+
+font:
+------
+```
+  sudo apt-get install fonts-inconsolata
 ```
