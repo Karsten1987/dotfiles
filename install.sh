@@ -8,6 +8,9 @@ if [ ! -d "$HOME/.vim" ]; then
   mkdir -p $HOME/.vim/colors
 fi
 
+echo "going to install ctags for vim"
+sudo apt-get install exuberant-ctags
+
 echo "going to copy vim files"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cp $BASEDIR/*.vim $HOME/.vim/colors
