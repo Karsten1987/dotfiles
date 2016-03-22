@@ -523,13 +523,25 @@ globalkeys = awful.util.table.join(
     -- special keys for volume
     awful.key({ }, "XF86AudioRaiseVolume",
                function ()
-                   awful.util.spawn("amixer -c 1 -q sset Master 2dB+")
+                   awful.util.spawn("amixer -c 0 -q sset Master 2dB+")
+               end),
+    awful.key({ modkey }, "=",
+               function ()
+                   awful.util.spawn("amixer -c 0 -q sset Master 2dB+")
                end),
     awful.key({ }, "XF86AudioLowerVolume",
                 function ()
-                   awful.util.spawn("amixer -c 1 -q sset Master 2dB-")
+                   awful.util.spawn("amixer -c 0 -q sset Master 2dB-")
+               end),
+    awful.key({ modkey }, "-",
+                function ()
+                   awful.util.spawn("amixer -c 0 -q sset Master 2dB-")
                end),
     awful.key({ }, "XF86AudioMute",
+                function ()
+                    awful.util.spawn("amixer -q -D pulse sset Master 1+ toggle")
+                  end),
+    awful.key({ modkey }, "0",
                 function ()
                     awful.util.spawn("amixer -q -D pulse sset Master 1+ toggle")
                   end),
