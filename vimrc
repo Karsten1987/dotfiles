@@ -4,6 +4,7 @@ set cpo&vim
 let &cpo=s:cpo_save
 unlet s:cpo_save
 
+set splitright
 set backspace=indent,eol,start
 set expandtab
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -23,7 +24,9 @@ set window=54
 set number
 set ls=2
 set list
+set term=xterm-256color
 colorscheme wombat256mod
+syntax on
 set ttyfast
 set noautoindent
 " toggle formatting options for raw-paste
@@ -48,6 +51,14 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.branch = '⎇'
+
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+nmap <F3> :NERDTreeFocus<CR>
+let g:nerdtree_tabs_open_on_console_startup = 1
+autocmd BufEnter * silent! lcd %:p:h'
+
 
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
