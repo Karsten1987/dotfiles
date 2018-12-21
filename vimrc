@@ -15,7 +15,7 @@ set listchars=tab:>-,trail:♥
 set nomodeline
 set printoptions=paper:letter
 "set ruler
-set runtimepath=~/.vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim74,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.vim/after
+set runtimepath=~/.vim,~/.vim/after,/usr/local/share/vim/vim81
 " set smartindent
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
@@ -34,6 +34,8 @@ set ls=3
 set list
 set term=xterm-256color
 colorscheme wombat256mod
+"colorscheme molokai
+let g:rehash256 = 1
 syntax on
 set ttyfast
 set noautoindent
@@ -84,13 +86,16 @@ let g:airline_section_y = ''
 let g:airline_skip_empty_sections = 1
 
 Plugin 'vim-syntastic/syntastic'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -stdlib=libc++'
+let g:syntastic_python_checkers=['flake8', 'pydocstyle']
+let g:syntastic_python_pydocstyle_args="--ignore=D100,D103"
+let g:syntastic_python_flake8_args="--ignore=D100,D103"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
@@ -99,11 +104,17 @@ Plugin 'jistr/vim-nerdtree-tabs'
 nmap <F3> :NERDTreeFocus<CR>
 let g:nerdtree_tabs_open_on_console_startup = 1
 autocmd BufEnter * silent! lcd %:p:h'
+let NERDTreeMinimalUI = 0
+let NERDTreeWinSize = 35
+" let NERDTreeDirArrows = 1
 
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+" Apply YCM FixIt
+map <F9> :YcmCompleter FixIt<CR>
 
 Plugin 'tpope/vim-fugitive'
 
@@ -121,6 +132,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = ''
 let g:ctrlp_working_path_mode = ''
 noremap <C-p> <Esc>:CtrlP ~/workspace<CR>
+
+Plugin 'gabrielelana/vim-markdown'
+
+Plugin 'karsten1987/vim-empy'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
