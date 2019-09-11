@@ -31,7 +31,8 @@ fi
 parse_git_branch() {
  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] $(parse_git_branch)\$ '
+# find color codes here: https://misc.flogisoft.com/bash/tip_colors_and_formatting
+PS1='${debian_chroot:+($debian_chroot)}\[\033[38;5;69m\]\u\[\033[00m\]:\[\033[38;5;184m\]\w\[\033[00m\] $(parse_git_branch)\$ '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
