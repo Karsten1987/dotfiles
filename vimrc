@@ -15,7 +15,7 @@ set listchars=tab:>-,trail:♥
 set nomodeline
 set printoptions=paper:letter
 "set ruler
-set runtimepath=~/.vim,~/.vim/after,/usr/local/share/vim/vim81
+set runtimepath=~/.vim,~/.vim/after,/usr/share/vim,/usr/local/share/vim/vim81
 " set smartindent
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 
